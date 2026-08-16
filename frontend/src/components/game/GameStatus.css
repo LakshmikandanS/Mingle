@@ -1,0 +1,121 @@
+.game-status {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  min-height: 48px;
+}
+
+/* ── Player indicator ──────────────────────────── */
+
+.status-indicator {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 600;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  background: var(--bg-surface-raised);
+  border: 1px solid var(--border-primary);
+}
+
+.status-indicator[data-player='X'] {
+  color: var(--text-primary);
+}
+
+.status-indicator[data-player='O'] {
+  color: var(--accent);
+}
+
+/* ── Status text ───────────────────────────────── */
+
+.status-text {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.status-agent {
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.status-over .status-text {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* ── Badges ────────────────────────────────────── */
+
+.status-badge {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  text-transform: uppercase;
+}
+
+.replay-badge {
+  background: var(--accent-subtle);
+  color: var(--accent);
+  border: 1px solid rgba(108, 92, 231, 0.2);
+}
+
+.result-badge {
+  background: var(--bg-surface-raised);
+  color: var(--text-muted);
+  border: 1px solid var(--border-primary);
+}
+
+/* ── Replay status ─────────────────────────────── */
+
+.replay-status .status-text {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* ── Thinking dots ─────────────────────────────── */
+
+.thinking-badge {
+  display: flex;
+  gap: 4px;
+  padding: 8px 10px;
+  background: var(--accent-subtle);
+  border: 1px solid rgba(108, 92, 231, 0.2);
+}
+
+.thinking-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: thinking-pulse 1.2s ease-in-out infinite;
+}
+
+.thinking-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.thinking-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes thinking-pulse {
+  0%,
+  80%,
+  100% {
+    opacity: 0.3;
+    transform: scale(0.8);
+  }
+  40% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
