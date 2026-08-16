@@ -11,7 +11,10 @@ app = FastAPI(title="Mingle API")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=[
+    "http://localhost:5173",
+    "https://mingle-seven-nu.vercel.app",
+    ],
     allow_methods=["*"],
     allow_headers=["*"],
 )
