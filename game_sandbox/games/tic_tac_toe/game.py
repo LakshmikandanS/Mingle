@@ -18,6 +18,14 @@ class TicTacToeGame:
     def get_current_player(self) -> currentPlayer:
         return self.current_player
 
+    def get_state(self) -> dict[str, object]:
+        return {
+            "board": [
+                ["" if cell == CellState.EMPTY else cell.value for cell in row]
+                for row in self.board
+            ]
+        }
+
     def get_status(self) -> status:
         return self.status
 
@@ -52,4 +60,3 @@ def print_board(board: Board) -> None:
 
 
 rule_engine = TicTacToeGame
-

@@ -25,3 +25,5 @@ class Game(Protocol):
     def get_current_player(self) -> Any:
         """Return the game-specific current-player object."""
 
+    def get_state(self) -> Any:
+        """Return a JSON-safe representation of the current game state."""
