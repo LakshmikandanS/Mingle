@@ -45,7 +45,7 @@ class GameSession:
 
     def submit_action(self, action: Action) -> dict[str, Any]:
         if self.game.is_game_over():
-            return self.state()
+            raise ValueError("Game is already over.")
 
         current_player = self.game.get_current_player()
         player_config = self._player_config(current_player)

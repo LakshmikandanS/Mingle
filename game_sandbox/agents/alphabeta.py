@@ -88,6 +88,7 @@ def alphabeta_agent(
     alpha = float("-inf")
     beta = float("inf")
     best_action = None
+    best_is_immediate_terminal = False
 
     if maximizing_player:
         best_eval = float("-inf")
@@ -105,9 +106,15 @@ def alphabeta_agent(
                 depth=1,
                 terminal_evaluator=terminal_evaluator,
             )
-            if eval_score > best_eval:
+            is_immediate_terminal = new_engine.is_game_over()
+            if eval_score > best_eval or (
+                eval_score == best_eval
+                and is_immediate_terminal
+                and not best_is_immediate_terminal
+            ):
                 best_eval = eval_score
                 best_action = action
+                best_is_immediate_terminal = is_immediate_terminal
             alpha = max(alpha, eval_score)
             if beta <= alpha:
                 search_metrics.pruning_cutoffs += 1
@@ -128,9 +135,15 @@ def alphabeta_agent(
                 depth=1,
                 terminal_evaluator=terminal_evaluator,
             )
-            if eval_score < best_eval:
+            is_immediate_terminal = new_engine.is_game_over()
+            if eval_score < best_eval or (
+                eval_score == best_eval
+                and is_immediate_terminal
+                and not best_is_immediate_terminal
+            ):
                 best_eval = eval_score
                 best_action = action
+                best_is_immediate_terminal = is_immediate_terminal
             beta = min(beta, eval_score)
             if beta <= alpha:
                 search_metrics.pruning_cutoffs += 1
