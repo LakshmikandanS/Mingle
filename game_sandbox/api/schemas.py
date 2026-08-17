@@ -48,3 +48,53 @@ class DecisionResponse(BaseModel):
     chosen_action: Any
     duration_ms: float
     metrics: Any
+
+
+class MazeEnvironmentRequest(BaseModel):
+    width: Optional[int] = None
+    height: Optional[int] = None
+    rows: Any = None
+    columns: Optional[int] = None
+    start: Optional[list[int]] = None
+    goal: Optional[list[int]] = None
+    generation_strategy: str = "manual"
+    seed: Optional[int] = None
+    obstacle_probability: float = 0.25
+    ensure_solvable: bool = True
+    max_attempts: int = 100
+    obstacles: list[Any] = Field(default_factory=list)
+    terrain_costs: Any = Field(default_factory=dict)
+    string_rows: Optional[list[str]] = None
+    map_rows: Optional[list[str]] = None
+    generation_config: dict[str, Any] = Field(default_factory=dict)
+
+
+class MazePlayerRunRequest(BaseModel):
+    environment_id: str
+
+
+class MazePlayerActionRequest(BaseModel):
+    action: str
+
+
+class MazeSearchRunRequest(BaseModel):
+    environment_id: str
+    algorithm: str
+    configuration: dict[str, Any] = Field(default_factory=dict)
+
+
+class MazeHintRequest(BaseModel):
+    hint_level: Optional[str] = None
+    level: Optional[str] = None
+    algorithm: Optional[str] = None
+    search_run_id: Optional[str] = None
+    configuration: dict[str, Any] = Field(default_factory=dict)
+
+
+class MazeComparisonRequest(BaseModel):
+    player_run_id: str
+    search_run_id: str
+
+
+class MazeIntermediateComparisonRequest(MazeComparisonRequest):
+    state: Optional[list[int]] = None

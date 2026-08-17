@@ -21,6 +21,17 @@ class ApiTests(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json(), {"status": "ok"})
 
+    def test_home_describes_available_backend_surfaces(self):
+        response = self.client.get("/")
+
+        self.assertEqual(response.status_code, 200)
+        body = response.json()
+        self.assertEqual(body["name"], "Mingle API")
+        self.assertEqual(body["status"], "ok")
+        self.assertEqual(body["endpoints"]["health"], "/health")
+        self.assertEqual(body["endpoints"]["tic_tac_toe"], "/games")
+        self.assertEqual(body["endpoints"]["maze_runner"], "/maze")
+
     def test_create_get_action_replay_and_decision_endpoints(self):
         create_response = self.client.post(
             "/games",
