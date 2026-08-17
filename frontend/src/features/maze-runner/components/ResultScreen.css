@@ -1,0 +1,124 @@
+.result-screen {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 8px 0;
+}
+
+/* ── Badge ─────────────────────────────────────── */
+
+.result-badge-container {
+  text-align: center;
+}
+
+.result-main-badge {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  padding: 8px 24px;
+  border-radius: var(--radius-md);
+  text-transform: uppercase;
+}
+
+.result-main-badge.completed {
+  background: rgba(52, 211, 153, 0.1);
+  color: #34D399;
+  border: 1px solid rgba(52, 211, 153, 0.3);
+}
+
+.result-main-badge.abandoned {
+  background: rgba(239, 68, 68, 0.08);
+  color: var(--error);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+/* ── Sections ──────────────────────────────────── */
+
+.result-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.result-section-title {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--text-muted);
+}
+
+.result-metrics {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.result-metric {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--border-subtle);
+  background: var(--bg-surface);
+}
+
+.result-metric:last-child {
+  border-bottom: none;
+}
+
+.result-metric-label {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.result-metric-value {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+/* ── Actions ───────────────────────────────────── */
+
+.result-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.result-action-btn {
+  flex: 1;
+  min-width: 120px;
+  padding: 10px 16px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    background var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.result-action-btn:hover {
+  background: var(--bg-surface-hover);
+  border-color: var(--text-dimmed);
+  color: var(--text-primary);
+}
+
+.result-action-primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--text-primary);
+}
+
+.result-action-primary:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+}

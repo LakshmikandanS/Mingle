@@ -1,20 +1,23 @@
 # Mingle (v0.1)
 
 Mingle is an interactive game + agent observability platform. 
-The v0.1 milestone focuses on **Tic-Tac-Toe**, enabling users to play matches against different search agents while inspecting their real-time decision telemetry and move replays.
+The v0.1 milestone focuses on **Tic-Tac-Toe** and **Maze Runner**, enabling users to play matches against different search agents while inspecting their real-time decision telemetry, trace events, and move replays.
 
 ---
 
 ## 🚀 Key Features
 
-- **Interactive Tic-Tac-Toe Game**: Play against AI search agents or run agent-vs-agent matches.
+### Tic-Tac-Toe
+- **Interactive Game**: Play against AI search agents or run agent-vs-agent matches.
 - **Agent Decision Inspector**: Telemetry panel exposing search metrics per decision (decision duration, nodes explored, search depth, terminal nodes, deep copies, pruning cutoffs).
 - **Match Replay Timeline**: Step backward and forward through past moves to inspect historical game states and their corresponding decision metrics.
-- **Supported Agents**:
-  - `human` — Interactive human player input
-  - `random` — Uniform random move selector
-  - `minimax` — Full Minimax search algorithm
-  - `alphabeta` — Minimax search with Alpha-Beta pruning
+- **Supported Agents**: `human`, `random`, `minimax`, `alphabeta`.
+
+### Maze Runner
+- **Interactive Maze environment**: Generate random or empty grids, adjust obstacle density, and solve them yourself.
+- **Algorithm Visualization**: Watch classic search algorithms (BFS, DFS, A*, etc.) solve the maze in real-time with step-by-step trace events.
+- **Hints and Assistance**: Use an algorithmic hint budget to get partial routes or next directions when stuck.
+- **Performance Comparison**: Compare your manual play metrics against the optimal search algorithm's statistics (path length, costs, execution time).
 
 ---
 
@@ -102,6 +105,12 @@ Mingle/
 | `POST` | `/games/{session_id}/actions` | Submit a move for the current player |
 | `GET` | `/games/{session_id}/replay` | Retrieve complete move history and replay states |
 | `GET` | `/games/{session_id}/decisions/{decision_id}` | Retrieve decision telemetry for a specific agent move |
+| `GET` | `/maze/algorithms` | List available search algorithms |
+| `POST` | `/maze/environments` | Create a new maze grid |
+| `POST` | `/maze/runs/player` | Start a manual player run |
+| `POST` | `/maze/runs/player/{run_id}/actions` | Submit a manual player move |
+| `POST` | `/maze/runs/search` | Run a search algorithm on an environment |
+| `GET` | `/maze/runs/search/{run_id}/trace` | Retrieve real-time search trace events |
 
 ---
 

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useGame } from './hooks/useGame';
 import { useReplay } from './hooks/useReplay';
 import {
@@ -13,9 +14,14 @@ import { GameStatus } from './components/game/GameStatus';
 import { NewGameForm } from './components/config/NewGameForm';
 import { DecisionPanel } from './components/inspector/DecisionPanel';
 import { ReplayTimeline } from './components/replay/ReplayTimeline';
+import { MazeRunner } from './features/maze-runner/MazeRunner';
 import './App.css';
 
+type ActiveGame = 'none' | 'tic-tac-toe' | 'maze-runner';
+
 export default function App() {
+  const [currentGame, setCurrentGame] = useState<ActiveGame>('none');
+
   const game = useGame();
   const replay = useReplay(game.gameState?.session_id, game.replayData);
 
@@ -48,14 +54,65 @@ export default function App() {
     ? replay.selectedDecision
     : game.latestDecision;
 
+  const handleLogoClick = () => {
+    game.resetGame();
+    setCurrentGame('none');
+  };
+
+  const headerTag =
+    currentGame === 'tic-tac-toe' ? 'tic-tac-toe'
+    : currentGame === 'maze-runner' ? 'maze-runner'
+    : undefined;
+
   return (
     <div className="app">
       <BackgroundGrid />
-      <Header hasGame={hasGame} onLogoClick={game.resetGame} />
+      <Header
+        hasGame={currentGame !== 'none'}
+        onLogoClick={handleLogoClick}
+        gameTag={headerTag}
+      />
 
-      {!hasGame ? (
-        /* ── Welcome / New game screen ── */
+      {currentGame === 'none' && (
+        /* ── Game selection screen ── */
         <main className="welcome-screen">
+          <div className="welcome-brand">
+            <h1 className="welcome-title">mingle</h1>
+            <p className="welcome-subtitle">
+              Play against agents. Observe how they think.
+            </p>
+          </div>
+          <div className="game-selector">
+            <button
+              className="game-card"
+              onClick={() => setCurrentGame('tic-tac-toe')}
+            >
+              <span className="game-card-icon">✕◯</span>
+              <span className="game-card-title">Tic-Tac-Toe</span>
+              <span className="game-card-desc">
+                Classic game with AI agents
+              </span>
+            </button>
+            <button
+              className="game-card"
+              onClick={() => setCurrentGame('maze-runner')}
+            >
+              <span className="game-card-icon">◆★</span>
+              <span className="game-card-title">Maze Runner</span>
+              <span className="game-card-desc">
+                Solve grids & compare search algorithms
+              </span>
+            </button>
+          </div>
+        </main>
+      )}
+
+      {currentGame === 'tic-tac-toe' && !hasGame && (
+        /* ── Tic-Tac-Toe new game form ── */
+        <main className="welcome-screen">
+          <button className="back-btn" onClick={handleLogoClick} style={{ position: 'absolute', top: '24px', left: '24px' }}>
+            ← Back
+          </button>
           <div className="welcome-brand">
             <h1 className="welcome-title">mingle</h1>
             <p className="welcome-subtitle">
@@ -68,10 +125,15 @@ export default function App() {
             error={game.error}
           />
         </main>
-      ) : (
-        /* ── Active game layout ── */
+      )}
+
+      {currentGame === 'tic-tac-toe' && hasGame && (
+        /* ── Active Tic-Tac-Toe game ── */
         <main className="game-layout">
           <div className="game-area">
+            <button className="back-btn" onClick={handleLogoClick} style={{ alignSelf: 'flex-start', marginBottom: '16px' }}>
+              ← Back
+            </button>
             <GameStatus
               gameState={game.gameState!}
               players={game.players}
@@ -135,6 +197,13 @@ export default function App() {
               </button>
             </div>
           </aside>
+        </main>
+      )}
+
+      {currentGame === 'maze-runner' && (
+        /* ── Maze Runner ── */
+        <main className="maze-runner-container">
+          <MazeRunner onBack={handleLogoClick} />
         </main>
       )}
 

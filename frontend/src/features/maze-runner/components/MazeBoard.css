@@ -1,0 +1,21 @@
+.maze-board-container {
+  width: 100%;
+  overflow: auto;
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-md);
+  background: var(--border-primary);
+}
+
+.maze-board {
+  display: grid;
+  gap: 1px;
+  width: 100%;
+  min-width: 200px;
+}
+
+/* Responsive: limit cell size for large grids */
+@media (max-width: 600px) {
+  .maze-board-container {
+    max-height: 60vh;
+  }
+}

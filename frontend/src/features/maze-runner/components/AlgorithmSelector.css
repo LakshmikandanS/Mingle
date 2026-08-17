@@ -1,0 +1,76 @@
+.algorithm-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.algo-selector-title {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--text-muted);
+}
+
+.algo-groups {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.algo-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.algo-group-label {
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-dimmed);
+}
+
+.algo-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.algo-chip {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  padding: 5px 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-primary);
+  background: var(--bg-surface);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition:
+    background var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.algo-chip:hover:not(:disabled):not(.planned) {
+  background: var(--bg-surface-hover);
+}
+
+.algo-chip.selected {
+  background: var(--accent-subtle);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.algo-chip:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.algo-chip.planned {
+  opacity: 0.35;
+  cursor: not-allowed;
+  font-style: italic;
+}

@@ -1,0 +1,124 @@
+.search-replay-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 0;
+}
+
+/* ── Transport ─────────────────────────────────── */
+
+.replay-transport {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.replay-btn {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  font-size: 14px;
+  cursor: pointer;
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.replay-btn:hover:not(:disabled) {
+  background: var(--bg-surface-hover);
+  color: var(--text-primary);
+}
+
+.replay-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.replay-btn-primary {
+  width: 44px;
+  height: 44px;
+  font-size: 18px;
+  border-radius: var(--radius-md);
+  background: var(--accent-subtle);
+  border-color: rgba(108, 92, 231, 0.2);
+  color: var(--accent);
+}
+
+.replay-btn-primary:hover:not(:disabled) {
+  background: rgba(108, 92, 231, 0.2);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ── Progress ──────────────────────────────────── */
+
+.replay-progress {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.replay-progress-text {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-dimmed);
+  min-width: 70px;
+  text-align: center;
+}
+
+.replay-progress-bar {
+  flex: 1;
+  height: 3px;
+  background: var(--border-primary);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.replay-progress-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 2px;
+  transition: width 100ms linear;
+}
+
+/* ── Speed selector ────────────────────────────── */
+
+.replay-speed-selector {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+}
+
+.speed-chip {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 4px 10px;
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-sm);
+  background: var(--bg-surface);
+  color: var(--text-dimmed);
+  cursor: pointer;
+  transition:
+    background var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.speed-chip:hover {
+  background: var(--bg-surface-hover);
+  color: var(--text-secondary);
+}
+
+.speed-chip.active {
+  background: var(--accent-subtle);
+  border-color: var(--accent);
+  color: var(--accent);
+}

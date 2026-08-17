@@ -1,0 +1,213 @@
+.hint-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.hint-algo-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.hint-algo-label {
+  color: var(--text-dimmed);
+}
+
+.hint-algo-name {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--accent);
+}
+
+.hint-points {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.hint-points-label {
+  color: var(--text-dimmed);
+}
+
+.hint-points-value {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* ── Hint levels ───────────────────────────────── */
+
+.hint-levels {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.hint-level-btn {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px 12px;
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-sm);
+  background: var(--bg-surface-raised);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.hint-level-btn:hover:not(:disabled) {
+  background: var(--bg-surface-hover);
+  border-color: #FBBF24;
+}
+
+.hint-level-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.hint-level-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.hint-level-desc {
+  font-size: 11px;
+  color: var(--text-dimmed);
+}
+
+.hint-level-cost {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: #FBBF24;
+}
+
+/* ── Hint result ───────────────────────────────── */
+
+.hint-result {
+  padding: 10px 12px;
+  border: 1px solid rgba(251, 191, 36, 0.25);
+  border-radius: var(--radius-sm);
+  background: rgba(251, 191, 36, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.hint-suggestion {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hint-suggestion-label {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.hint-suggestion-arrow {
+  font-size: 20px;
+  color: #FBBF24;
+  font-weight: 700;
+}
+
+.hint-suggestion-state {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: #FBBF24;
+}
+
+.hint-route-length {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-dimmed);
+}
+
+.hint-unavailable {
+  padding: 4px 0;
+}
+
+.hint-unavailable-text {
+  font-size: 12px;
+  color: var(--text-dimmed);
+  font-style: italic;
+}
+
+.hint-dismiss-btn {
+  align-self: flex-end;
+  font-size: 11px;
+  color: var(--text-dimmed);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 2px 6px;
+}
+
+.hint-dismiss-btn:hover {
+  color: var(--text-secondary);
+}
+
+/* ── Hint history ──────────────────────────────── */
+
+.hint-history-section {
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 8px;
+}
+
+.hint-history-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--text-dimmed);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 0;
+}
+
+.hint-history-toggle:hover {
+  color: var(--text-secondary);
+}
+
+.hint-history-arrow {
+  font-size: 10px;
+}
+
+.hint-history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 6px;
+}
+
+.hint-history-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  padding: 3px 0;
+}
+
+.hint-history-algo {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--accent);
+}
+
+.hint-history-level {
+  color: var(--text-dimmed);
+  flex: 1;
+}
+
+.hint-history-cost {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: #FBBF24;
+}

@@ -1,0 +1,100 @@
+.maze-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 0;
+  min-height: 48px;
+  flex-wrap: wrap;
+}
+
+.maze-mode-badge {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  text-transform: uppercase;
+}
+
+.maze-mode-badge.mode-play {
+  background: var(--accent-subtle);
+  color: var(--accent);
+  border: 1px solid rgba(108, 92, 231, 0.2);
+}
+
+.maze-mode-badge.mode-watch {
+  background: rgba(96, 165, 250, 0.1);
+  color: #60A5FA;
+  border: 1px solid rgba(96, 165, 250, 0.2);
+}
+
+.maze-mode-badge.mode-result {
+  background: var(--bg-surface-raised);
+  color: var(--text-muted);
+  border: 1px solid var(--border-primary);
+}
+
+.maze-mode-badge.mode-config {
+  background: var(--bg-surface-raised);
+  color: var(--text-muted);
+  border: 1px solid var(--border-primary);
+}
+
+.maze-status-text {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.maze-status-mono {
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+.maze-status-time {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.maze-status-warn {
+  color: var(--error);
+}
+
+.maze-status-divider {
+  color: var(--text-dimmed);
+  font-size: 12px;
+}
+
+.maze-status-algo-badge {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  color: #60A5FA;
+  padding: 3px 8px;
+  background: rgba(96, 165, 250, 0.1);
+  border: 1px solid rgba(96, 165, 250, 0.15);
+  border-radius: var(--radius-sm);
+}
+
+.result-status-badge {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+}
+
+.result-status-badge.completed {
+  background: rgba(52, 211, 153, 0.1);
+  color: #34D399;
+  border: 1px solid rgba(52, 211, 153, 0.2);
+}
+
+.result-status-badge.abandoned {
+  background: rgba(239, 68, 68, 0.08);
+  color: var(--error);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
