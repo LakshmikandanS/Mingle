@@ -1,7 +1,7 @@
+import '@testing-library/jest-dom/vitest';
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { SearchReplayControls } from '../SearchReplayControls';
-import { REPLAY_SPEEDS } from '../../types';
 
 describe('SearchReplayControls', () => {
   const defaultProps = {

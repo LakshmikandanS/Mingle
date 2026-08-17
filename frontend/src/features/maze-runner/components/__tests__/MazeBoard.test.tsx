@@ -1,11 +1,17 @@
+import '@testing-library/jest-dom/vitest';
 import { describe, it, expect, vi } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import { MazeBoard } from '../MazeBoard';
 import type { MazeCellResponse } from '../../../../types/maze';
 
-const createCell = (row: number, col: number, kind: string = 'FREE', terrain_cost: number = 1): MazeCellResponse => ({
+const createCell = (
+  row: number,
+  column: number,
+  kind: MazeCellResponse['kind'] = 'free',
+  terrain_cost: number = 1,
+): MazeCellResponse => ({
   row,
-  col,
+  column,
   kind,
   terrain_cost,
 });
@@ -20,8 +26,8 @@ describe('MazeBoard', () => {
   };
 
   const simpleGrid = [
-    [createCell(0, 0, 'START'), createCell(0, 1)],
-    [createCell(1, 0, 'OBSTACLE'), createCell(1, 1, 'GOAL')],
+    [createCell(0, 0, 'start'), createCell(0, 1)],
+    [createCell(1, 0, 'obstacle'), createCell(1, 1, 'goal')],
   ];
 
   it('renders grid with correct dimensions', () => {
@@ -48,9 +54,9 @@ describe('MazeBoard', () => {
         layers={defaultLayers}
       />
     );
-    expect(container.querySelector('.kind-START')).toBeInTheDocument();
-    expect(container.querySelector('.kind-GOAL')).toBeInTheDocument();
-    expect(container.querySelector('.kind-OBSTACLE')).toBeInTheDocument();
+    expect(container.querySelector('.kind-start')).toBeInTheDocument();
+    expect(container.querySelector('.kind-goal')).toBeInTheDocument();
+    expect(container.querySelector('.kind-obstacle')).toBeInTheDocument();
   });
 
   it('renders player overlay correctly', () => {

@@ -44,6 +44,7 @@ export function MazeRunner({ onBack }: MazeRunnerProps) {
   const [layers, setLayers] = useState<Record<BoardLayer, boolean>>(DEFAULT_LAYERS);
   const [showGiveUpConfirm, setShowGiveUpConfirm] = useState(false);
   const [showDocs, setShowDocs] = useState(false);
+  const [showHintPanel, setShowHintPanel] = useState(false);
   const [sidebarTab, setSidebarTab] = useState<'inspector' | 'hints' | 'comparison'>('inspector');
 
   const algorithms = useAlgorithms();
@@ -202,6 +203,7 @@ export function MazeRunner({ onBack }: MazeRunnerProps) {
     setMode('config');
     setShowGiveUpConfirm(false);
     setShowDocs(false);
+    setShowHintPanel(false);
   }, [playerRun, searchReplay, hints, comparison, environment]);
 
   // Switch algorithm in watch mode
@@ -240,6 +242,7 @@ export function MazeRunner({ onBack }: MazeRunnerProps) {
   // Derive hint visualization data
   const hintTarget = hints.currentHint?.suggested_state ?? null;
   const hintPath = hints.currentHint?.route ?? hints.currentHint?.partial_path ?? null;
+  const shouldShowHints = mode === 'play' && showHintPanel;
 
   return (
     <div className="maze-runner-layout">
@@ -340,7 +343,7 @@ export function MazeRunner({ onBack }: MazeRunnerProps) {
           >
             Inspector
           </button>
-          {mode === 'play' && (
+          {shouldShowHints && (
             <button
               className={`sidebar-tab ${sidebarTab === 'hints' ? 'active' : ''}`}
               onClick={() => setSidebarTab('hints')}
@@ -382,7 +385,7 @@ export function MazeRunner({ onBack }: MazeRunnerProps) {
             />
           )}
 
-          {sidebarTab === 'hints' && mode === 'play' && (
+          {sidebarTab === 'hints' && shouldShowHints && (
             <HintPanel
               currentHint={hints.currentHint}
               hintHistory={hints.hintHistory}

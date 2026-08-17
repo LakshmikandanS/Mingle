@@ -1,6 +1,8 @@
+import '@testing-library/jest-dom/vitest';
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { HintPanel } from '../HintPanel';
+import type { HintResponse } from '../../../../types/maze';
 
 describe('HintPanel', () => {
   const defaultProps = {
@@ -56,7 +58,7 @@ describe('HintPanel', () => {
       cost: 10,
       level: 'NEXT_ACTION' as const,
       algorithm: 'astar',
-    };
+    } as Partial<HintResponse> as HintResponse;
     
     render(<HintPanel {...defaultProps} currentHint={hint} />);
     expect(screen.getByText('Suggested move:')).toBeInTheDocument();
@@ -71,7 +73,7 @@ describe('HintPanel', () => {
       cost: 0,
       level: 'NEXT_ACTION' as const,
       algorithm: 'astar',
-    };
+    } as Partial<HintResponse> as HintResponse;
     
     render(<HintPanel {...defaultProps} currentHint={hint} />);
     expect(screen.getByText('No path found')).toBeInTheDocument();
@@ -81,7 +83,7 @@ describe('HintPanel', () => {
     const history = [
       { available: true, cost: 10, level: 'NEXT_ACTION' as const, algorithm: 'astar' },
       { available: true, cost: 20, level: 'PARTIAL_ROUTE' as const, algorithm: 'astar' },
-    ];
+    ] as Partial<HintResponse>[] as HintResponse[];
     
     render(<HintPanel {...defaultProps} hintHistory={history} totalPointsSpent={30} />);
     expect(screen.getByText('Points spent:')).toBeInTheDocument();

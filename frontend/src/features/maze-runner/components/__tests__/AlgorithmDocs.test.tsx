@@ -1,10 +1,11 @@
+import '@testing-library/jest-dom/vitest';
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { AlgorithmDocs } from '../AlgorithmDocs';
 import type { AlgorithmDocumentationResponse } from '../../../../types/maze';
 
 describe('AlgorithmDocs', () => {
-  const mockDoc: AlgorithmDocumentationResponse = {
+  const mockDoc = {
     algorithm: 'astar',
     name: 'A* Search',
     category: 'INFORMED',
@@ -20,10 +21,10 @@ describe('AlgorithmDocs', () => {
     weighted_cost_requirements: 'Handles non-negative weights.',
     step_by_step: ['Start at root', 'Evaluate neighbors'],
     implementation_notes: 'Implemented in maze_runner.py'
-  };
+  } as Partial<AlgorithmDocumentationResponse> as AlgorithmDocumentationResponse;
 
   it('renders loading state', () => {
-    const { container } = render(
+    render(
       <AlgorithmDocs documentation={null} isLoading={true} onClose={vi.fn()} />
     );
     expect(screen.getByText('Loading documentation…')).toBeInTheDocument();

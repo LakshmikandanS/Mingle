@@ -1,3 +1,4 @@
+import '@testing-library/jest-dom/vitest';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent, waitFor, act } from '@testing-library/react';
 import { MazeRunner } from '../MazeRunner';
@@ -37,12 +38,12 @@ describe('MazeRunner Integration', () => {
   });
 
   it('transitions to play mode when generated with manual solve', async () => {
-    const mockEnv: MazeEnvironmentResponse = {
+    const mockEnv = {
       environment_id: 'env-1',
       rows: 5,
       columns: 5,
       cells: [],
-    };
+    } as Partial<MazeEnvironmentResponse>;
     
     const mockPlayerRun = {
       run_id: 'run-1',
@@ -71,7 +72,7 @@ describe('MazeRunner Integration', () => {
       trace_metadata: {},
     };
 
-    vi.mocked(mazeApi.createEnvironment).mockResolvedValue(mockEnv as any);
+    vi.mocked(mazeApi.createEnvironment).mockResolvedValue(mockEnv as MazeEnvironmentResponse);
     vi.mocked(mazeApi.createPlayerRun).mockResolvedValue(mockPlayerRun as any);
     vi.mocked(mazeApi.createSearchRun).mockResolvedValue(mockSearchRun as any);
 
@@ -103,12 +104,12 @@ describe('MazeRunner Integration', () => {
   });
 
   it('transitions to watch mode when generated with watch agent', async () => {
-    const mockEnv: MazeEnvironmentResponse = {
+    const mockEnv = {
       environment_id: 'env-2',
       rows: 5,
       columns: 5,
       cells: [],
-    };
+    } as Partial<MazeEnvironmentResponse>;
 
     const mockSearchRun = {
       run_id: 'search-2',
@@ -127,7 +128,7 @@ describe('MazeRunner Integration', () => {
       trace_metadata: {},
     };
 
-    vi.mocked(mazeApi.createEnvironment).mockResolvedValue(mockEnv as any);
+    vi.mocked(mazeApi.createEnvironment).mockResolvedValue(mockEnv as MazeEnvironmentResponse);
     vi.mocked(mazeApi.createSearchRun).mockResolvedValue(mockSearchRun as any);
 
     await act(async () => {

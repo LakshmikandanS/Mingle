@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { AlgorithmSummary } from '../../../types/maze';
 import type { MazeEnvironmentRequest } from '../../../types/maze';
 import { formatAlgorithmName, formatCategory } from '../mapping';
@@ -28,6 +28,12 @@ export function MazeConfigForm({
   const [seed, setSeed] = useState('');
   const [algorithm, setAlgorithm] = useState(algorithms[0]?.algorithm ?? 'astar');
   const [mode, setMode] = useState<'play' | 'watch'>('play');
+
+  useEffect(() => {
+    if (algorithms.length > 0 && !algorithms.some((alg) => alg.algorithm === algorithm)) {
+      setAlgorithm(algorithms[0].algorithm);
+    }
+  }, [algorithms, algorithm]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
